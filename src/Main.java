@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner leitor = new Scanner(System.in);
+        Filme.lerArquivo();
         while (true){
             System.out.println("*********************");
             System.out.println("*****LOUUCADORA******");
@@ -18,7 +19,11 @@ switch (opcao) {
 
     case 1:
         Cliente.cadastrarCliente(leitor);
-}
+        break;
+    case 2:
+        Filme.catalogo(leitor);
+        break;
+   }
   }
  }
 }
