@@ -1,0 +1,9 @@
+public enum Categoria {
+    COMEDIA,
+    LANCAMENTO,
+    TERROR,
+    ROMANCE,
+    ACAO,
+    FANTASIA;
+
+}
