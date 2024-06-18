@@ -13,30 +13,69 @@ public class Filme {
 
 
     static List<Filme> filmes = new ArrayList<>();
+
     public static void lerArquivo() {
         try {
-            File arquivo = new File("film.txt");
+            File arquivo = new File("C:\\Users\\renan\\IdeaProjects\\Loucadora\\src\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();
-                String[] partes = linha.split(" ");
+                String[] partes = linha.split(",");
 
                 if (partes.length >= 4) {
-                    String titulo = partes[0];
-                    int classIndicativa = Integer.parseInt(partes[1]);
-                    String categoria = partes[2];
-                    String status = partes[3];
-                    filmes.add(new Filme(titulo,classIndicativa, Categoria.valueOf(categoria), Status.valueOf(status)));
+                    String titulo = partes[0].trim();
+                    String classIndicativaStr = partes[1].trim();
+                    String categoriaStr = partes[2].trim();
+                    String statusStr = partes[3].trim();
+
+                    // Variável para armazenar a classificação indicativa
+                    int classIndicativa = 0; // Valor padrão caso não seja um número
+
+                    // Verificar se classIndicativaStr é um número
+                    try {
+                        classIndicativa = Integer.parseInt(classIndicativaStr);
+                    } catch (NumberFormatException e) {
+                        // Se não for um número, pode ser tratado de outra forma
+                        System.err.println("Classificação indicativa não é um número: " + classIndicativaStr);
+                        // Aqui você pode definir um valor padrão ou ignorar este filme, dependendo do seu caso
+                        continue; // Pula para a próxima iteração do loop
+                    }
+
+                    // Verificar e converter categoria para enum Categoria
+                    Categoria categoria;
+                    try {
+                        categoria = Categoria.valueOf(categoriaStr);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Categoria inválida: " + categoriaStr);
+                        categoria = Categoria.Indefinida; // Ou outro tratamento adequado
+                    }
+
+                    // Verificar e converter status para enum Status
+                    Status status;
+                    try {
+                        status = Status.valueOf(statusStr);
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Status inválido: " + statusStr);
+                        status = Status.Indisponivel; // Ou outro tratamento adequado
+                    }
+
+                    // Adicionar o filme à lista
+                    filmes.add(new Filme(titulo, classIndicativa, categoria, status));
+
+                } else {
+                    System.err.println("Linha inválida no arquivo: " + linha);
                 }
             }
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.err.println("Arquivo não encontrado: filmes.txt");
+            System.err.println("Arquivo não encontrado: film.txt");
             e.printStackTrace();
         }
     }
+
+
     public Filme(String titulo, int classInficativa, Categoria categoria, Status status) {
         this.titulo = titulo;
         this.classIndicativa = classIndicativa;
@@ -46,31 +85,36 @@ public class Filme {
     }
 
 
-    public static void catalogo(Scanner leitor){
+    public static void catalogo(Scanner leitor) {
         System.out.println("**********************");
         System.out.println("***Catalogo Filmes***");
         System.out.println("1 - Todos");
         System.out.println("2 - Categoria");
         int opcao = Integer.parseInt(leitor.nextLine());
 
-switch (opcao){
-    case 1:
-     for (Filme f : filmes){
-         System.out.println("Titulo : "+ f.titulo+"Categoria: "+f.categoria+"Status: "+f.status);
-     }
-     break;
-    case 2:
-        System.out.println("Digite a categoria:");
-        String categoriaDigitada = leitor.nextLine();
-        for (Filme f : filmes) {
-            if (f.categoria.toString().equalsIgnoreCase(categoriaDigitada)) {
-                System.out.println("Titulo: " + f.titulo + ", Categoria: " + f.categoria + ", Status: " + f.status);
-            }
+        switch (opcao) {
+            case 1:
+                for (Filme f : filmes) {
+                    System.out.println("Titulo: " + f.titulo + ", Categoria: " + f.categoria + ", Status: " + f.status);
+                }
+                break;
+            case 2:
+                System.out.println("Digite a categoria:");
+                String categoriaDigitada = leitor.nextLine();
+                boolean encontrouFilmes = false;
+                for (Filme f : filmes) {
+                    if (f.categoria.toString().equalsIgnoreCase(categoriaDigitada)) {
+                        System.out.println("Titulo: " + f.titulo + ", Categoria: " + f.categoria + ", Status: " + f.status);
+                        encontrouFilmes = true;
+                    }
+                }
+                if (!encontrouFilmes) {
+                    System.out.println("Nenhum filme encontrado nesta categoria.");
+                }
+                break;
+            default:
+                System.out.println("Opção inválida.");
         }
-        break;
-
-}
-
     }
 
 }
