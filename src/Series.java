@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class Series {
     String titulo;
     int classInficativa;
-    String categoria;
-    String status;
+    Categoria categoria;
+    Status status;
     int temporadas;
 
     List<Series> serie = new ArrayList<>();
 
-    public Series(String titulo, int classInficativa, String categoria, String status, int temporadas) {
+    public Series(String titulo, int classInficativa, Categoria categoria2, Status status, int temporadas) {
         this.titulo = titulo;
         this.classInficativa = classInficativa;
-        this.categoria = categoria;
+        this.categoria = categoria2;
         this.status = status;
         this.temporadas = temporadas;
     }
