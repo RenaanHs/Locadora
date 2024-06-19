@@ -1,5 +1,9 @@
 public class Alugar {
-    void devolver(Filme f){
+    void alugar(Filme f){
         f.status = Status.Locado;
+    }
+
+    void alugarSerie(Series s){
+        s.status = Status.Locado;
     }
 }
