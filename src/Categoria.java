@@ -4,5 +4,6 @@ public enum Categoria {
     Terror,
     Romance,
     Acao,
-    Fantasia, Indefinida;
+    Fantasia, 
+    Indefinida;
 }
