@@ -116,7 +116,7 @@ public class Series {
                     }
                 }
                 if (!encontrouFilmes) {
-                    System.out.println("Nenhum filme encontrado nesta categoria.");
+                    System.out.println("Nenhuma serie encontrada nesta categoria.");
                 }
                 break;
             default:
