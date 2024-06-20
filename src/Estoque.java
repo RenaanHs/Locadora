@@ -2,11 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Estoque {
-
+ 
+//armazena filmes 
  public static List<Filme> filmes = new ArrayList<>();
+ //armazena series
  public static List<Series> series = new ArrayList<>();
     
-    //disponibilidade de filmes no estoque
+    //filmes disponiveis no estoque
     public static boolean DisponibilidadeFilme(String titulo) {
         for (Filme filme : filmes) {
             if (filme.titulo.equalsIgnoreCase(titulo) && filme.status == Status.Disponivel) {
@@ -15,7 +17,7 @@ public class Estoque {
         }
         return false;
     }
-    //disponibilidade de series no estoque
+    //series disponiveis no estoque
     public static boolean DisponibilidadeSerie(String titulo) {
         for (Series serie : series) {
             if (serie.titulo.equalsIgnoreCase(titulo) && serie.status == Status.Disponivel) {
@@ -58,21 +60,18 @@ public class Estoque {
     public static void carregarFilmes(List<Filme> listaFilmes) {
         filmes.addAll(listaFilmes);
     }
-
-    //carrega séries no estoque
+    //carrega series no estoque
     public static void carregarSeries(List<Series> listaSeries) {
         series.addAll(listaSeries);
     }
-
-    //exibi o catálogo completo de filmes
+    //exibi o catálogo de filmes
     public static void exibirCatalogoCompletoFilmes() {
         for (Filme filme : filmes) {
             System.out.println("Título: " + filme.titulo + ", Categoria: " + filme.categoria +
                                ", Classificação Indicativa: " + filme.classIndicativa + ", Status: " + filme.status);
         }
     }
-
-    //exibi o catálogo completo de séries
+    //exibi o catálogo de séries
     public static void exibirCatalogoCompletoSeries() {
         for (Series serie : series) {
             System.out.println("Título: " + serie.titulo + ", Categoria: " + serie.categoria +
