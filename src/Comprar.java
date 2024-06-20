@@ -3,25 +3,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Compra {
-    
+
     // Lista para armazenar o histórico de compras
     private static List<Filme> historicoCompras = new ArrayList<>();
 
-    // Método para verificar a disponibilidade de um filme para compra
+    // Método para verificar a disponibilidade de um filme para compra usando a classe Estoque
     public static boolean verificarDisponibilidadeParaCompra(String titulo) {
-        for (Filme filme : Filme.filmes) {
-            if (filme.titulo.equalsIgnoreCase(titulo) && filme.status == Status.Disponivel) {
-                return true;
-            }
-        }
-        return false;
+        // Utiliza a classe Estoque para verificar a disponibilidade
+        return Estoque.verificarDisponibilidade(titulo);
     }
 
     // Método para registrar a compra de um filme
     public static void registrarCompra(String titulo) {
         for (Filme filme : Filme.filmes) {
             if (filme.titulo.equalsIgnoreCase(titulo)) {
-                if (filme.status == Status.Disponivel) {
+                if (verificarDisponibilidadeParaCompra(titulo)) {
                     filme.status = Status.Indisponivel; // Após a compra, o filme fica indisponível para aluguel.
                     historicoCompras.add(filme);
                     System.out.println("Compra registrada: " + filme.titulo + " agora está " + filme.status);
@@ -95,4 +91,5 @@ public class Compra {
         }
     }
 }
+
 
