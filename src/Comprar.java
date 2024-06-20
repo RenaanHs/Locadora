@@ -4,36 +4,62 @@ import java.util.Scanner;
 
 public class Compra {
 
-    // Lista para armazenar o histórico de compras
-    private static List<Filme> historicoCompras = new ArrayList<>();
+    //histórico de compras filmes
+    private static List<Filme> historicoComprasF = new ArrayList<>();
+    
+    //histórico de compras séries
+    private static List<Series> historicoCompraS = new ArrayList<>();
 
-    // Método para verificar a disponibilidade de um filme para compra usando a classe Estoque
-    public static boolean verificarDisponibilidadeParaCompra(String titulo) {
-        // Utiliza a classe Estoque para verificar a disponibilidade
-        return Estoque.verificarDisponibilidade(titulo);
+    // disponibilidade de compra filme
+    public static boolean disponibilidadeParaCompraFilme(String titulo) {
+        return Estoque.verificarDisponibilidadeFilme(titulo);
     }
 
-    // Método para registrar a compra de um filme
-    public static void registrarCompra(String titulo) {
-        for (Filme filme : Filme.filmes) {
+    // disponibilidade de compra série
+    public static boolean disponibilidadeParaCompraSerie(String titulo) {
+        return Estoque.verificarDisponibilidadeSerie(titulo);
+    }
+    
+    // compra filme
+    public static void CompraFilme(String titulo) {
+        for (Filme filme : Estoque.filmes) {
             if (filme.titulo.equalsIgnoreCase(titulo)) {
-                if (verificarDisponibilidadeParaCompra(titulo)) {
-                    filme.status = Status.Indisponivel; // Após a compra, o filme fica indisponível para aluguel.
-                    historicoCompras.add(filme);
+                if (disponibilidadeParaCompra(titulo, true)) {
+                    filme.status = Status.Indisponivel; // Depois de comprado ficara indisponível.
+                    historicoComprasF.add(filme);
                     System.out.println("Compra registrada: " + filme.titulo + " agora está " + filme.status);
                 } else {
-                    System.out.println("O filme " + filme.titulo + " não está disponível para compra.");
+                    System.out.println("O filme " + filme.titulo + " não está disponível .");
                 }
                 return;
             }
         }
-        System.out.println("Filme não encontrado no catálogo: " + titulo);
+        System.out.println("Filme não encontrado: " + titulo);
     }
 
-    // Método para exibir filmes disponíveis para compra
-    public static void exibirFilmesDisponiveisParaCompra() {
+    //compra série
+    public static void CompraSerie(String titulo) {
+        for (Series serie : Estoque.series) {
+            if (serie.titulo.equalsIgnoreCase(titulo)) {
+                if (disponibilidadeParaCompra(titulo, false)) {
+                    serie.status = Status.Indisponivel; // Depois de comprada ficara indisponível.
+                    historicoCompraS.add(serie);
+                    System.out.println("Compra registrada: " + serie.titulo + " 
+                                       Status " + serie.status);
+                } else {
+                    System.out.println("A série " + serie.titulo + " não está disponível.");
+                }
+                return;
+            }
+        }
+        System.out.println("Série não encontrada: " + titulo);
+    }
+
+    //filmes disponíveis
+    public static void filmesDisponiveisParaCompra() {
         boolean encontrouFilmes = false;
-        for (Filme filme : Filme.filmes) {
+        System.out.println("Filmes Disponíveis para Compra:");
+        for (Filme filme : Estoque.filmes) {
             if (filme.status == Status.Disponivel) {
                 System.out.println("Título: " + filme.titulo + ", Categoria: " + filme.categoria +
                                    ", Classificação Indicativa: " + filme.classIndicativa + ", Status: " + filme.status);
@@ -45,51 +71,112 @@ public class Compra {
         }
     }
 
-    // Método para exibir o histórico de compras
-    public static void exibirHistoricoDeCompras() {
-        if (historicoCompras.isEmpty()) {
-            System.out.println("Nenhuma compra foi registrada ainda.");
+    //séries disponíveis
+    public static void seriesDisponiveisParaCompra() {
+        boolean encontrouSeries = false;
+        System.out.println("Séries Disponíveis para Compra:");
+        for (Series serie : Estoque.series) {
+            if (serie.status == Status.Disponivel) {
+                System.out.println("Título: " + serie.titulo + ", Categoria: " + serie.categoria +
+                                   ", Classificação Indicativa: " + serie.classInficativa + ", Temporadas: " + serie.temporadas +
+                                   ", Status: " + serie.status);
+                encontrouSeries = true;
+            }
+        }
+        if (!encontrouSeries) {
+            System.out.println("Nenhuma série disponível para compra.");
+        }
+    }
+
+    //histórico de compras filmes
+    public static void historicoDeComprasF() {
+        if (historicoComprasF.isEmpty()) {
+            System.out.println("Nenhum filme foi comprado.");
         } else {
-            System.out.println("Histórico de Compras:");
-            for (Filme filme : historicoCompras) {
+            System.out.println("Histórico de Compras de Filmes:");
+            for (Filme filme : historicoComprasF) {
                 System.out.println("Título: " + filme.titulo + ", Categoria: " + filme.categoria +
                                    ", Classificação Indicativa: " + filme.classIndicativa);
             }
         }
     }
 
-    // Método principal para gerenciamento de compras
-    public static void menuCompra(Scanner leitor) {
+    // histórico de compras series
+    public static void historicoDeComprasS() {
+        if (historicoCompraS.isEmpty()) {
+            System.out.println("Nenhuma série foi comprada.");
+        } else {
+            System.out.println("Histórico de Compras de Séries:");
+            for (Series serie : historicoCompraS) {
+                System.out.println("Título: " + serie.titulo + ", Categoria: " + serie.categoria +
+                                   ", Classificação Indicativa: " + serie.classInficativa + ", Temporadas: " + serie.temporadas);
+            }
+        }
+    }
+
+    //compra de filmes
+    public static void menuCompraFilmes(Scanner leitor) {
         while (true) {
             System.out.println("*********************");
-            System.out.println("*****MENU COMPRA*****");
+            System.out.println("***** COMPRAAAA *****");
             System.out.println("*********************");
             System.out.println("1 - Comprar Filme");
-            System.out.println("2 - Exibir Filmes Disponíveis para Compra");
-            System.out.println("3 - Exibir Histórico de Compras");
+            System.out.println("2 - Filmes Disponíveis");
+            System.out.println("3 - Histórico de Compra de Filmes");
             System.out.println("4 - Voltar ao Menu Principal");
             System.out.println("*********************");
-            int opcao = Integer.parseInt(leitor.nextLine());
+            int opcao = Integer.parseInt(leitor.nextLine()); // retorna string convertido em num inteiro
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o título do filme que deseja comprar:");
+                    System.out.println("Qual filme deseja comprar?");
                     String tituloCompra = leitor.nextLine();
-                    registrarCompra(tituloCompra);
+                    CompraFilme(tituloCompra);
                     break;
                 case 2:
-                    exibirFilmesDisponiveisParaCompra();
+                    filmesDisponiveisParaCompra();
                     break;
                 case 3:
-                    exibirHistoricoDeCompras();
+                    historicoDeCompraF();
                     break;
                 case 4:
-                    return; // Sai do menu de compra e retorna ao menu principal
+                    return;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
+    }
+
+    //compra de series
+    public static void menuCompraS(Scanner leitor) {
+        while (true) {
+            System.out.println("*********************");
+            System.out.println("***** COMPRAAAA *****");
+            System.out.println("*********************");
+            System.out.println("1 - Comprar Série");
+            System.out.println("2 - Séries Disponíveis");
+            System.out.println("3 - Histórico de Compra de Séries");
+            System.out.println("4 - Voltar ao Menu Principal");
+            System.out.println("*********************");
+            int opcao = Integer.parseInt(leitor.nextLine()); // retorna string convertido em num inteiro
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Qual série deseja comprar?");
+                    String tituloCompra = leitor.nextLine();
+                    CompraSerie(tituloCompra);
+                    break;
+                case 2:
+                    seriesDisponiveisParaCompra();
+                    break;
+                case 3:
+                    historicoDeCompraS();
+                    break;
+                case 4:
+                    return;
                 default:
                     System.out.println("Opção inválida.");
             }
         }
     }
 }
-
-
