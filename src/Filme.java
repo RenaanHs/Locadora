@@ -12,9 +12,9 @@ public class Filme {
     Status status;
 
 
-    static List<Filme> filmes = new ArrayList<>();
 
-    public static void lerArquivo() {
+
+    public static void lerArquivo(Scanner leitor, List<Filme> filmes) {
         try {
             File arquivo = new File("C:\\Users\\renan\\IdeaProjects\\Loucadora\\src\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
@@ -85,7 +85,8 @@ public class Filme {
     }
 
 
-    public static void catalogo(Scanner leitor) {
+
+    public static void catalogo(Scanner leitor, List<Filme> filmes) {
         System.out.println("**********************");
         System.out.println("***Catalogo Filmes***");
         System.out.println("1 - Todos");
