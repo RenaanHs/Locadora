@@ -11,7 +11,7 @@ public class Series {
     Status status;
     int temporadas;
 
-    List<Series> serie = new ArrayList<>();
+
 
     public Series(String titulo, int classInficativa, Categoria categoria2, Status status, int temporadas) {
         this.titulo = titulo;
@@ -21,7 +21,7 @@ public class Series {
         this.temporadas = temporadas;
     }
 
-    public void lerArquivo() {
+    public static void lerArquivo(Scanner leitor, List<Series> serie) {
         try {
             File arquivo = new File("C:\\Users\\renan\\IdeaProjects\\Loucadora\\src\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
@@ -92,7 +92,7 @@ public class Series {
         }
     }
 
-    public void catalogo(Scanner leitor) {
+    public static void catalogo(Scanner leitor, List<Series> serie) {
         System.out.println("**********************");
         System.out.println("***Catalogo Series***");
         System.out.println("1 - Todos");
@@ -125,4 +125,5 @@ public class Series {
     }
 
 }
+
 
