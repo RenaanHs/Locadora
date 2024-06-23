@@ -29,7 +29,7 @@ public class Filme {
 
     public static void lerArquivo(Scanner leitor, List<Filme> filmes) {
         try {
-            File arquivo = new File("C:\\Locadora\\Filmes.txt");
+            File arquivo = new File("C:\\Locadora\\src\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {

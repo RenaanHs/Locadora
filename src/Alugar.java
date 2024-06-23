@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Alugar {
     void alugar(Filme f){
         f.status = Status.Locado;
@@ -8,19 +10,20 @@ public class Alugar {
     }
 
     public static void alugar(Scanner leitor) {
-        static int valor = 15;
-        static int idCounter = 0;
+        int valor = 15;
+        int idCounter = 0;
         System.out.println("*********************");
         System.out.println("----Alugar----");
         System.out.print("Nome do cliente: ");
         String nomeCliente = leitor.nextLine();
         System.out.print("ID do cliente: ");
         int idCliente = Integer.parseInt(leitor.nextLine());
+        Cliente.pesquisarId( idCliente, leitor);
         System.out.print("Nome do filme ou série: ");
         String nomeItem = leitor.nextLine();
         
         boolean encontrado = false;
-        for (Filme filme : filmes) {
+        for (Filme filme : Filme.filmes) {
             if (filme.getTitulo().equalsIgnoreCase(nomeItem) && filme.getStatus() == Status.Disponivel) {
                 Alugar alugar = new Alugar();
                 alugar.alugar(filme);
@@ -35,7 +38,7 @@ public class Alugar {
         }
 
         if (!encontrado) {
-            for (Series serie : serie) {
+            for (Series serie : Series.serie) {
                 if (serie.getTitulo().equalsIgnoreCase(nomeItem) && serie.getStatus() == Status.Disponivel) {
                     Alugar alugar = new Alugar();
                     alugar.alugarSerie(serie);
@@ -54,5 +57,4 @@ public class Alugar {
             System.out.println("Item não encontrado ou não disponível para aluguel.");
         }
     }
-
 }

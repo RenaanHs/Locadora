@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Devolver {
     public void devolver(Filme f) {
         f.status = Status.Disponivel;
@@ -20,7 +22,7 @@ public class Devolver {
         String nomeItem = leitor.nextLine();
         
         boolean encontrado = false;
-        for (Filme filme : filmes) {
+        for (Filme filme : Filme.filmes) {
             if (filme.getTitulo().equalsIgnoreCase(nomeItem) && filme.getStatus() == Status.Locado) {
                 Devolver devolver = new Devolver();
                 devolver.devolver(filme);
@@ -33,7 +35,7 @@ public class Devolver {
         }
 
         if (!encontrado) {
-            for (Series serie : serie) {
+            for (Series serie : Series.serie) {
                 if (serie.getTitulo().equalsIgnoreCase(nomeItem) && serie.getStatus() == Status.Locado) {
                     Devolver devolver = new Devolver();
                     devolver.devolverSerie(serie);

@@ -30,7 +30,7 @@ public class Series {
 
     public static void lerArquivo(Scanner leitor, List<Series> serie) {
         try {
-            File arquivo = new File("C:\\Locadora\\Series.txt");
+            File arquivo = new File("C:\\Locadora\\src\\Series.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
