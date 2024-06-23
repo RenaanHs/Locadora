@@ -39,8 +39,6 @@ public class Main {
                 case 6:
                     Funcionario.ListarFuncionarios(leitor);
                     break;
-                case 7:
-                    break;
                 default:
                     break;
             }
