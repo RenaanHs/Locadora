@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Cliente extends Pessoa implements Locadora{
+public class Cliente extends Pessoa {
 
      static int id;
      static int idCounter = 0;
@@ -72,8 +72,27 @@ public class Cliente extends Pessoa implements Locadora{
         }
     }
 
-public static void cliente() {
-    Scanner leitor = new Scanner(System.in);
+         public static void lerArquivo(Scanner leitor, List<Cliente> pessoa) throws FileNotFoundException {
+        File arquivo = new File("C:\\Locadora\\src\\Cliente.txt");
+        Scanner scanner = new Scanner(arquivo);
+
+        while (scanner.hasNextLine()) {
+            String linha = scanner.nextLine();
+            String[] partes = linha.split(",");
+
+            if (partes.length >= 5) {
+                int idade = Integer.parseInt(partes[0].trim());
+                String nome = partes[1].trim();
+                String cpf = partes[2].trim();
+                String genero = partes[3].trim();
+                int id = Integer.parseInt(partes[4].trim());
+            }
+        }
+    }
+     
+
+public static void cliente(Scanner leitor) {
+    
         while (true){
         System.out.println("*********************");
         System.out.println("*****LOUUCADORA******");
