@@ -18,7 +18,7 @@ public class Main {
             int opcao = Integer.parseInt(leitor.nextLine());
             switch (opcao) {
                 case 1:
-                    Cliente.cliente();
+                    Cliente.cliente(leitor);
                     break;
                 case 2:
                     Filme.lerArquivo(leitor,Filme.filmes);
