@@ -6,17 +6,30 @@ import java.util.Scanner;
 
 public class Filme {
 
+    public static List<Filme> filmes = new ArrayList<>();
     String titulo;
-     int classIndicativa;
+    int classIndicativa;
     Categoria categoria;
     Status status;
 
+    public Filme(String titulo, int classIndicativa, Categoria categoria, Status status) {
+        this.titulo = titulo;
+        this.classIndicativa = classIndicativa;
+        this.categoria = categoria;
+        this.status = status;
+    }
 
+    public String getTitulo() {
+        return titulo;
+    }
 
+    public Status getStatus() {
+        return status;
+    }
 
     public static void lerArquivo(Scanner leitor, List<Filme> filmes) {
         try {
-            File arquivo = new File("C:\\Users\\renan\\IdeaProjects\\Loucadora\\src\\Filmes.txt");
+            File arquivo = new File("C:\\Locadora\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
@@ -70,23 +83,23 @@ public class Filme {
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.err.println("Arquivo não encontrado: film.txt");
+            System.err.println("Arquivo não encontrado: Filmes.txt");
             e.printStackTrace();
         }
     }
 
+    static void cadastrarFilme(Scanner leitor) {
+        System.out.println("Digite o titulo do filme");
+        String titulo = leitor.nextLine();
+        System.out.println("Qual a classificação indicativa do filme?");
+        int classificacao = Integer.parseInt(leitor.nextLine());
+        System.out.println("Digite o genero do filme");
+        String generof = leitor.nextLine();
 
-    public Filme(String titulo, int classInficativa, Categoria categoria, Status status) {
-        this.titulo = titulo;
-        this.classIndicativa = classIndicativa;
-        this.categoria = categoria;
-        this.status = status;
-
+        filmes.add(new Filme(titulo, classificacao, Categoria.valueOf(generof), Status.Disponivel));
     }
 
-
-
-    public static void catalogo(Scanner leitor, List<Filme> filmes) {
+    public static void catalogoF(Scanner leitor) {
         System.out.println("**********************");
         System.out.println("***Catalogo Filmes***");
         System.out.println("1 - Todos");
@@ -95,7 +108,7 @@ public class Filme {
 
         switch (opcao) {
             case 1:
-                for (Filme f : filmes) {
+                for (Filme f : Filme.filmes) {
                     System.out.println("Titulo: " + f.titulo + ", Categoria: " + f.categoria + ", Status: " + f.status);
                 }
                 break;
@@ -103,7 +116,7 @@ public class Filme {
                 System.out.println("Digite a categoria:");
                 String categoriaDigitada = leitor.nextLine();
                 boolean encontrouFilmes = false;
-                for (Filme f : filmes) {
+                for (Filme f : Filme.filmes) {
                     if (f.categoria.toString().equalsIgnoreCase(categoriaDigitada)) {
                         System.out.println("Titulo: " + f.titulo + ", Categoria: " + f.categoria + ", Status: " + f.status);
                         encontrouFilmes = true;

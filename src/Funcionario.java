@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Funcionario extends Pessoa{
 
     String cargo;
@@ -7,5 +9,9 @@ public class Funcionario extends Pessoa{
         super(idade, nome, cpf, genero);
         this.cargo = cargo;
         this.salario = salario;
+    }
+
+    public static void ListarFuncionarios(Scanner leitor) {
+
     }
 }

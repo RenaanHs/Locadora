@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Compra {
+public class Comprar {
 
     //histórico de compras filmes
     private static List<Filme> historicoComprasF = new ArrayList<>();
@@ -11,20 +11,20 @@ public class Compra {
     private static List<Series> historicoCompraS = new ArrayList<>();
 
     // disponibilidade de compra filme
-    public static boolean disponibilidadeParaCompraFilme(String titulo) {
-        return Estoque.verificarDisponibilidadeFilme(titulo);
+    public static boolean disponibilidadeParaCompraFilme(String titulo, Boolean status) {
+        return Estoque.DisponibilidadeFilme(titulo);
     }
 
     // disponibilidade de compra série
-    public static boolean disponibilidadeParaCompraSerie(String titulo) {
-        return Estoque.verificarDisponibilidadeSerie(titulo);
+    public static boolean disponibilidadeParaCompraSerie(String titulo, Boolean status) {
+        return Estoque.DisponibilidadeSerie(titulo);
     }
     
     // compra filme
     public static void CompraFilme(String titulo) {
         for (Filme filme : Estoque.filmes) {
             if (filme.titulo.equalsIgnoreCase(titulo)) {
-                if (disponibilidadeParaCompra(titulo, true)) {
+                if (disponibilidadeParaCompraFilme(titulo, true)) {
                     filme.status = Status.Indisponivel; // Depois de comprado ficara indisponível.
                     historicoComprasF.add(filme);
                     System.out.println("Compra registrada: " + filme.titulo + " agora está " + filme.status);
@@ -41,11 +41,10 @@ public class Compra {
     public static void CompraSerie(String titulo) {
         for (Series serie : Estoque.series) {
             if (serie.titulo.equalsIgnoreCase(titulo)) {
-                if (disponibilidadeParaCompra(titulo, false)) {
+                if (disponibilidadeParaCompraSerie(titulo, false)) {
                     serie.status = Status.Indisponivel; // Depois de comprada ficara indisponível.
                     historicoCompraS.add(serie);
-                    System.out.println("Compra registrada: " + serie.titulo + " 
-                                       Status " + serie.status);
+                    System.out.println("Compra registrada: " + serie.titulo + "Status " + serie.status);
                 } else {
                     System.out.println("A série " + serie.titulo + " não está disponível.");
                 }
@@ -118,7 +117,7 @@ public class Compra {
     public static void menuCompraFilmes(Scanner leitor) {
         while (true) {
             System.out.println("*********************");
-            System.out.println("***** COMPRAAAA *****");
+            System.out.println("***** COMPRAR *****");
             System.out.println("*********************");
             System.out.println("1 - Comprar Filme");
             System.out.println("2 - Filmes Disponíveis");
@@ -137,7 +136,7 @@ public class Compra {
                     filmesDisponiveisParaCompra();
                     break;
                 case 3:
-                    historicoDeCompraF();
+//                    historicoDeCompraF();
                     break;
                 case 4:
                     return;
@@ -170,7 +169,7 @@ public class Compra {
                     seriesDisponiveisParaCompra();
                     break;
                 case 3:
-                    historicoDeCompraS();
+//                    historicoDeCompraS();
                     break;
                 case 4:
                     return;

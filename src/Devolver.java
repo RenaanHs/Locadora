@@ -1,11 +1,54 @@
 public class Devolver {
     public void devolver(Filme f) {
-        f.setStatus(Status.Disponivel);
+        f.status = Status.Disponivel;
         System.out.println("Filme " + f.getTitulo() + " devolvido com sucesso.");
     }
 
     public void devolverSerie(Series s) {
-        s.setStatus(Status.Disponivel);
+        s.status = Status.Disponivel;
         System.out.println("Série " + s.getTitulo() + " devolvida com sucesso.");
     }
+
+    public static void devolver(Scanner leitor) {
+        System.out.println("*********************");
+        System.out.println("----Devolver----");
+        System.out.print("Nome do cliente: ");
+        String nomeCliente = leitor.nextLine();
+        System.out.print("ID do cliente: ");
+        int idCliente = Integer.parseInt(leitor.nextLine());
+        System.out.print("Nome do filme ou série: ");
+        String nomeItem = leitor.nextLine();
+        
+        boolean encontrado = false;
+        for (Filme filme : filmes) {
+            if (filme.getTitulo().equalsIgnoreCase(nomeItem) && filme.getStatus() == Status.Locado) {
+                Devolver devolver = new Devolver();
+                devolver.devolver(filme);
+                System.out.println("Devolução realizada com sucesso:");
+                System.out.println("Cliente: " + nomeCliente);
+                System.out.println("Filme: " + filme.getTitulo());
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            for (Series serie : serie) {
+                if (serie.getTitulo().equalsIgnoreCase(nomeItem) && serie.getStatus() == Status.Locado) {
+                    Devolver devolver = new Devolver();
+                    devolver.devolverSerie(serie);
+                     System.out.println("Devolução realizada com sucesso:");
+                    System.out.println("Cliente: " + nomeCliente);
+                    System.out.println("Série: " + serie.getTitulo());
+                    encontrado = true;
+                    break;
+                }
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Item não encontrado ou não disponível para devolução.");
+        }
+    }
+
 }

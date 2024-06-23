@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Series {
+    public static List<Series> serie = new ArrayList<>();
     String titulo;
     int classInficativa;
     Categoria categoria;
     Status status;
-    int temporadas;
-
-
+    static int temporadas;
 
     public Series(String titulo, int classInficativa, Categoria categoria2, Status status, int temporadas) {
         this.titulo = titulo;
@@ -21,9 +20,17 @@ public class Series {
         this.temporadas = temporadas;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
     public static void lerArquivo(Scanner leitor, List<Series> serie) {
         try {
-            File arquivo = new File("C:\\Users\\renan\\IdeaProjects\\Loucadora\\src\\Filmes.txt");
+            File arquivo = new File("C:\\Locadora\\Series.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
@@ -87,12 +94,25 @@ public class Series {
 
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.err.println("Arquivo não encontrado: film.txt");
+            System.err.println("Arquivo não encontrado: Series.txt");
             e.printStackTrace();
         }
     }
 
-    public static void catalogo(Scanner leitor, List<Series> serie) {
+    static void cadastrarSerie(Scanner leitor) {
+        System.out.println("Digite o titulo da serie");
+        String titulo = leitor.nextLine();
+        System.out.println("Qual a classificação indicativa da serie?");
+        int classificacao = Integer.parseInt(leitor.nextLine());
+        System.out.println("Digite o genero da serie");
+        String generos = leitor.nextLine();
+        System.out.println("Quantas temporadas?");
+        int temp = Integer.parseInt(leitor.nextLine());
+
+        serie.add(new Series(titulo, classificacao,  Categoria.valueOf(generos), Status.Disponivel, temp));
+    }
+
+    public static void catalogoS(Scanner leitor) {
         System.out.println("**********************");
         System.out.println("***Catalogo Series***");
         System.out.println("1 - Todos");
@@ -101,7 +121,7 @@ public class Series {
 
         switch (opcao) {
             case 1:
-                for (Series s : serie) {
+                for (Series s : Series.serie) {
                     System.out.println("Titulo: " + s.titulo + ", Categoria: " + s.categoria + ", Status: " + s.status);
                 }
                 break;
@@ -109,7 +129,7 @@ public class Series {
                 System.out.println("Digite a categoria:");
                 String categoriaDigitada = leitor.nextLine();
                 boolean encontrouFilmes = false;
-                for (Series s : serie) {
+                for (Series s : Series.serie) {
                     if (s.categoria.toString().equalsIgnoreCase(categoriaDigitada)) {
                         System.out.println("Titulo: " + s.titulo + ", Categoria: " + s.categoria + ", Status: " + s.status);
                         encontrouFilmes = true;
@@ -125,5 +145,3 @@ public class Series {
     }
 
 }
-
-

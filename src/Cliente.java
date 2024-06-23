@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Cliente extends Pessoa {
 
-
-
     int id;
     static int idCounter = 0;
 
@@ -16,7 +14,7 @@ public class Cliente extends Pessoa {
 
     static List<Cliente> pessoa = new ArrayList<>();
 
-    public static void cadastrarCliente(Scanner leitor){
+    public static void cadastrarCliente(Scanner leitor) {
         System.out.print("Nome: ");
         String nome = leitor.nextLine();
         System.out.print("idade: ");
@@ -27,9 +25,10 @@ public class Cliente extends Pessoa {
         char genero = leitor.next().charAt(0);
 
         int id = ++idCounter;
-        pessoa.add(new Cliente(idade,nome,cpf,genero,idCounter));
+        pessoa.add(new Cliente(idade, nome, cpf, genero, idCounter));
 
         System.out.println("Cliente Cadastrado com sucesso!!");
 
     }
+
 }
