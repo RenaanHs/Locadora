@@ -1,5 +1,6 @@
-import java.util.Scanner;
-
 public interface Locadora {
 
+    public static void realizarAcao() {
+
+    }
 }
