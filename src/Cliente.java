@@ -21,18 +21,30 @@ public class Cliente extends Pessoa implements Locadora{
     public static void cadastrarCliente(Scanner leitor) {
         System.out.print("Nome: ");
         String nome = leitor.nextLine();
-        System.out.print("idade: ");
-        int idade = Integer.parseInt(leitor.nextLine());
-        System.out.print("Cpf: ");
+
+        System.out.print("Idade: ");
+        int idade = 0;
+        try {
+            idade = Integer.parseInt(leitor.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Erro ao ler idade. Certifique-se de inserir um número válido.");
+            return; // Retorna ou trata o erro conforme necessário
+        }
+
+        System.out.print("CPF: ");
         String cpf = leitor.nextLine();
-        System.out.print("Genero\nM- Masculino\nF- Feminino\n :");
-        char genero = leitor.next().charAt(0);
+
+        System.out.print("Gênero (M/F): ");
+        char genero = ' ';
+        if (leitor.hasNextLine()) {
+            genero = leitor.nextLine().charAt(0);
+        }
 
         int id = ++idCounter;
-        pessoa.add(new Cliente(idade, nome, cpf, genero, idCounter));
+        pessoa.add(new Cliente(idade, nome, cpf, genero, id));
 
-        System.out.println("Cliente Cadastrado com sucesso!!");
-
+        System.out.println("Cliente cadastrado com sucesso!");
+        System.out.println("Nome: "+ nome+" Id: " + id);
     }
 
     public static void pesquisarId(int id, Scanner leitor) {
