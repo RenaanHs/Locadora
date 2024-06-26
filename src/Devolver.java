@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Devolver {
-    public void devolver(Filme f) {
+    public void devolverFilme(Filme f) {
         f.status = Status.Disponivel;
         System.out.println("Filme " + f.getTitulo() + " devolvido com sucesso.");
     }
@@ -18,14 +18,15 @@ public class Devolver {
         String nomeCliente = leitor.nextLine();
         System.out.print("ID do cliente: ");
         int idCliente = Integer.parseInt(leitor.nextLine());
+        Cliente.pesquisarId(idCliente,leitor);
         System.out.print("Nome do filme ou série: ");
         String nomeItem = leitor.nextLine();
-        
+
         boolean encontrado = false;
         for (Filme filme : Filme.filmes) {
             if (filme.getTitulo().equalsIgnoreCase(nomeItem) && filme.getStatus() == Status.Locado) {
                 Devolver devolver = new Devolver();
-                devolver.devolver(filme);
+                devolver.devolverFilme(filme);
                 System.out.println("Devolução realizada com sucesso:");
                 System.out.println("Cliente: " + nomeCliente);
                 System.out.println("Filme: " + filme.getTitulo());
@@ -39,7 +40,7 @@ public class Devolver {
                 if (serie.getTitulo().equalsIgnoreCase(nomeItem) && serie.getStatus() == Status.Locado) {
                     Devolver devolver = new Devolver();
                     devolver.devolverSerie(serie);
-                     System.out.println("Devolução realizada com sucesso:");
+                    System.out.println("Devolução realizada com sucesso:");
                     System.out.println("Cliente: " + nomeCliente);
                     System.out.println("Série: " + serie.getTitulo());
                     encontrado = true;
