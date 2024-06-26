@@ -5,3 +5,11 @@ Andor, 14, Acao, Disponivel, 1
 House of The Dragon, 18, Lancamento, Disponivel, 2
 Sweet Tooth, 14, Fantasia, Disponivel, 3
 Monarch, 14, Acao, Disponivel, 1
+Doctor Who, 12, Ficcao, Disponivel, 9
+The Chosen, 12, Drama, Disponivel, 9
+Game of Thrones, 18, Drama, Disponivel, 9
+Andor, 14, Acao, Disponivel, 9
+House of The Dragon, 18, Lancamento, Disponivel, 9
+Sweet Tooth, 14, Fantasia, Disponivel, 9
+Monarch, 14, Acao, Disponivel, 9
+The Office, 10, Comedia, Disponivel, 9

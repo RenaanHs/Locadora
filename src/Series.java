@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,13 +13,14 @@ public class Series {
     Categoria categoria;
     Status status;
     static int temporadas;
+    private final int classIndicativa;
 
-    public Series(String titulo, int classInficativa, Categoria categoria2, Status status, int temporadas) {
+    public Series(String titulo, int classIndicativa, Categoria categoria2, Status status, int temporadas) {
         this.titulo = titulo;
-        this.classInficativa = classInficativa;
+        this.classIndicativa = classIndicativa;
         this.categoria = categoria2;
         this.status = status;
-        this.temporadas = temporadas;
+        Series.temporadas = temporadas;
     }
 
     public String getTitulo() {
@@ -28,9 +31,13 @@ public class Series {
         return status;
     }
 
-    public static void lerArquivo(Scanner leitor, List<Series> serie) {
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public static void lerArquivo(List<Series> serie) {
         try {
-            File arquivo = new File("C:\\Locadora\\src\\Series.txt");
+            File arquivo = new File("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
@@ -44,47 +51,43 @@ public class Series {
                     String statusStr = partes[3].trim();
                     String temporadasStr = partes[4].trim();
 
-                    // Variável para armazenar a classificação indicativa
-                    int classIndicativa = 0; // Valor padrão caso não seja um número
+                    int classIndicativa;
 
-                    // Verificar se classIndicativaStr é um número
                     try {
                         classIndicativa = Integer.parseInt(classIndicativaStr);
                     } catch (NumberFormatException e) {
-                        // Se não for um número, pode ser tratado de outra forma
+
                         System.err.println("Classificação indicativa não é um número: " + classIndicativaStr);
-                        // Aqui você pode definir um valor padrão ou ignorar este filme, dependendo do seu caso
-                        continue; // Pula para a próxima iteração do loop
+
+                        continue;
                     }
 
-                    // Verificar e converter categoria para enum Categoria
                     Categoria categoria;
                     try {
                         categoria = Categoria.valueOf(categoriaStr);
                     } catch (IllegalArgumentException e) {
                         System.err.println("Categoria inválida: " + categoriaStr);
-                        categoria = Categoria.Indefinida; // Ou outro tratamento adequado
+                        categoria = Categoria.Indefinida;
                     }
 
-                    // Verificar e converter status para enum Status
+
                     Status status;
                     try {
                         status = Status.valueOf(statusStr);
                     } catch (IllegalArgumentException e) {
                         System.err.println("Status inválido: " + statusStr);
-                        status = Status.Indisponivel; // Ou outro tratamento adequado
+                        status = Status.Indisponivel;
                     }
 
                     try {
                         temporadas = Integer.parseInt(temporadasStr);
                     } catch (NumberFormatException e) {
-                        // Se não for um número, pode ser tratado de outra forma
+
                         System.err.println("Temporadas não é um número: " + classIndicativaStr);
-                        // Aqui você pode definir um valor padrão ou ignorar este filme, dependendo do seu caso
-                        continue; // Pula para a próxima iteração do loop
+
+                        continue;
                     }
 
-                    // Adicionar o filme à lista
                     serie.add(new Series(titulo, classIndicativa, categoria, status, temporadas));
 
                 } else {
@@ -110,6 +113,23 @@ public class Series {
         int temp = Integer.parseInt(leitor.nextLine());
 
         serie.add(new Series(titulo, classificacao,  Categoria.valueOf(generos), Status.Disponivel, temp));
+        escreverArquivo();
+
+    }
+
+    public static void escreverArquivo() {
+        try {
+            FileWriter writer = new FileWriter("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt", true);
+
+            for (Series s : serie) {
+                writer.write(s.titulo + ", " + s.classIndicativa + ", " + s.categoria + ", " + s.status + ", " + temporadas + "\n");
+            }
+
+            writer.close();
+            System.out.println("Série cadastrada com sucesso!");
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
+        }
     }
 
     public static void catalogoS(Scanner leitor) {

@@ -1,19 +1,20 @@
-As Branquelas ,16, Comedia ,Disponivel
-Ace ventura, 0 ,Comedia, Disponivel
-O Mascara,10, Comedia, Disponivel
+As Branquelas, 16, Comedia, Disponivel
+Ace ventura, 0, Comedia, Disponivel
+O Maskara, 10, Comedia, Disponivel
 A Hora do Rush, 10, Acao, Disponivel
-Gente Grande, 0 ,Acao ,Disponivel
-007 ,16, Acao, Disponivel
+Gente Grande, 0, Acao, Disponivel
+007, 16, Acao, Disponivel
 O exorcista, 16, Terror, Disponivel
 O grito, 16, Terror, Disponivel
-O Chamado, 16 ,Terror, Disponivel
+O Chamado, 16, Terror, Disponivel
 Para sempre ao seu lado, 10, Romance, Disponivel
 Como eu era antes de você, 10, Romance, Disponivel
-Uma linda mulher ,10 ,Romance ,Disponivel
-Ghost ,12, Romance, Disponivel
-Harry Potter e a Pedra Filosofal, 0 ,Fantasia, Disponivel
-Harry Potter e a Camara Secreta ,0, Fantasia ,Disponivel
-Harry Potter e o Prisioneiro de Azkaban ,0, Fantasia ,Disponivel
-Duna II ,14, Lancamento, Disponivel
-Deadpool III ,18, Lancamento, Disponivel
+Uma linda mulher, 10, Romance, Disponivel
+Ghost, 12, Romance, Disponivel
+Harry Potter e a Pedra Filosofal, 0, Fantasia, Disponivel
+Harry Potter e a Camara Secreta, 0, Fantasia, Disponivel
+Harry Potter e o Prisioneiro de Azkaban, 0, Fantasia, Disponivel
+Duna II, 14, Lancamento, Disponivel
+Deadpool III, 18, Lancamento, Disponivel
 King Kong x Godizlla, 12, Lancamento, Disponivel
+A Bruxa, 16, Terror, Disponivel

@@ -1,6 +1,7 @@
 public enum Status {
     Disponivel,
     Locado, 
-    Indisponivel;
+    Indisponivel,
+    Vendido;
 }
 

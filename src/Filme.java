@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,9 +29,13 @@ public class Filme {
         return status;
     }
 
-    public static void lerArquivo(Scanner leitor, List<Filme> filmes) {
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public static void lerArquivo(List<Filme> filmes) {
         try {
-            File arquivo = new File("C:\\Locadora\\src\\Filmes.txt");
+            File arquivo = new File("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
@@ -97,7 +103,27 @@ public class Filme {
         String generof = leitor.nextLine();
 
         filmes.add(new Filme(titulo, classificacao, Categoria.valueOf(generof), Status.Disponivel));
+
+        escreverArquivo();
+
     }
+
+    public static void escreverArquivo() {
+        try {
+            FileWriter writer = new FileWriter("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt", true);
+
+            // Percorre a lista de filmes e escreve cada filme no arquivo
+            for (Filme filme : filmes) {
+                writer.write(filme.titulo + ", " + filme.classIndicativa + ", " + filme.categoria + ", " + filme.status + "\n");
+            }
+
+            writer.close();
+            System.out.println("Filme cadastrado com sucesso!");
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
+        }
+    }
+
 
     public static void catalogoF(Scanner leitor) {
         System.out.println("**********************");
