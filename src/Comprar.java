@@ -136,7 +136,7 @@ public class Comprar {
                     filmesDisponiveisParaCompra();
                     break;
                 case 3:
-//                    historicoDeCompraF();
+                    historicoDeCompraF();
                     break;
                 case 4:
                     return;
@@ -169,7 +169,7 @@ public class Comprar {
                     seriesDisponiveisParaCompra();
                     break;
                 case 3:
-//                    historicoDeCompraS();
+                    historicoDeCompraS();
                     break;
                 case 4:
                     return;
