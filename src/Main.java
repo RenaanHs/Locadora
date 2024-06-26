@@ -17,6 +17,10 @@ public class Main {
             System.out.println("*********************");
             int opcao = Integer.parseInt(leitor.nextLine());
             switch (opcao) {
+                case 0:
+                System.out.println("Saindo do programa...");
+                leitor.close();
+                return;    
                 case 1:
                     Cliente.cliente(leitor);
                     break;
@@ -40,6 +44,7 @@ public class Main {
                     Funcionario.ListarFuncionarios(leitor);
                     break;
                 default:
+                    System.out.println("Opção inválida. Tente novamente.");
                     break;
             }
         }
