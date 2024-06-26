@@ -1,6 +1,12 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Devolver {
+
+    private static final String filmesPath = "C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt";
+    private static final String seriesPath = "C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt";
+    
     public void devolverFilme(Filme f) {
         f.status = Status.Disponivel;
         System.out.println("Filme " + f.getTitulo() + " devolvido com sucesso.");
@@ -18,31 +24,35 @@ public class Devolver {
         String nomeCliente = leitor.nextLine();
         System.out.print("ID do cliente: ");
         int idCliente = Integer.parseInt(leitor.nextLine());
-        Cliente.pesquisarId(idCliente,leitor);
+        Cliente.pesquisarId(idCliente, leitor);
         System.out.print("Nome do filme ou série: ");
         String nomeItem = leitor.nextLine();
 
         boolean encontrado = false;
-        for (Filme filme : Filme.filmes) {
+        for (Filme filme : Estoque.filmes) {
             if (filme.getTitulo().equalsIgnoreCase(nomeItem) && filme.getStatus() == Status.Locado) {
                 Devolver devolver = new Devolver();
                 devolver.devolverFilme(filme);
                 System.out.println("Devolução realizada com sucesso:");
                 System.out.println("Cliente: " + nomeCliente);
                 System.out.println("Filme: " + filme.getTitulo());
+                devolvido(nomeCliente, filme.getTitulo(), "Filme");
+                Estoque.atualizarArquivoFilmes(filmesPath);
                 encontrado = true;
                 break;
             }
         }
 
         if (!encontrado) {
-            for (Series serie : Series.serie) {
+            for (Series serie : Estoque.series) {
                 if (serie.getTitulo().equalsIgnoreCase(nomeItem) && serie.getStatus() == Status.Locado) {
                     Devolver devolver = new Devolver();
                     devolver.devolverSerie(serie);
                     System.out.println("Devolução realizada com sucesso:");
                     System.out.println("Cliente: " + nomeCliente);
                     System.out.println("Série: " + serie.getTitulo());
+                    devolvido(nomeCliente, serie.getTitulo(), "Série");
+                    Estoque.atualizarArquivoSeries(seriesPath);
                     encontrado = true;
                     break;
                 }
@@ -53,5 +63,4 @@ public class Devolver {
             System.out.println("Item não encontrado ou não disponível para devolução.");
         }
     }
-
 }
