@@ -1,4 +1,5 @@
 O projeto foi criado com o objetivo compor uma nota parcial do semestre, como uma avaliação, solicitada pelo professor. 
+
 O projeto é um sistema para uma locadora de filmes, e possuí as seguintes funções:
   - Alugar e devolver filmes e séries;
   - Comprar filmes e séries;
@@ -28,4 +29,5 @@ Sobre as classes:
   - Series: contém variáveis que dão origem aos dados da série, assim como uma lista onde as séries da locadora são armazenados. Também é onde se cadastra novas séries, faz a busca das séries por categoria ou os lista de maneira geral, além de acessar um arquivo de texto onde as séries estão previamente armazenadas.
 
 Para executar o projeto, basta baixar ele em seu computador e usar uma máquina virtual do Java. Pode ser executado usando o Visual Studio Code, com uma extenção para a linguagem Java, ou o IntelliJ.
+
 O ChatGPT foi utilizado para auxiliar e guiar a equipe no acesso aos arquivos de texto que armazenam os dados do sistema.
