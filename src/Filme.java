@@ -35,7 +35,7 @@ public class Filme {
 
     public static void lerArquivo(List<Filme> filmes) {
         try {
-            File arquivo = new File("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt");
+            File arquivo = new File("C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Filmes.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
@@ -48,17 +48,13 @@ public class Filme {
                     String categoriaStr = partes[2].trim();
                     String statusStr = partes[3].trim();
 
-                    // Variável para armazenar a classificação indicativa
-                    int classIndicativa = 0; // Valor padrão caso não seja um número
+                    int classIndicativa = 0;
 
-                    // Verificar se classIndicativaStr é um número
                     try {
                         classIndicativa = Integer.parseInt(classIndicativaStr);
                     } catch (NumberFormatException e) {
-                        // Se não for um número, pode ser tratado de outra forma
                         System.err.println("Classificação indicativa não é um número: " + classIndicativaStr);
-                        // Aqui você pode definir um valor padrão ou ignorar este filme, dependendo do seu caso
-                        continue; // Pula para a próxima iteração do loop
+                        continue;
                     }
 
                     // Verificar e converter categoria para enum Categoria
@@ -67,19 +63,18 @@ public class Filme {
                         categoria = Categoria.valueOf(categoriaStr);
                     } catch (IllegalArgumentException e) {
                         System.err.println("Categoria inválida: " + categoriaStr);
-                        categoria = Categoria.Indefinida; // Ou outro tratamento adequado
+                        categoria = Categoria.Indefinida;
                     }
 
-                    // Verificar e converter status para enum Status
                     Status status;
                     try {
                         status = Status.valueOf(statusStr);
                     } catch (IllegalArgumentException e) {
                         System.err.println("Status inválido: " + statusStr);
-                        status = Status.Indisponivel; // Ou outro tratamento adequado
+                        status = Status.Indisponivel;
                     }
 
-                    // Adicionar o filme à lista
+
                     filmes.add(new Filme(titulo, classIndicativa, categoria, status));
 
                 } else {
@@ -109,15 +104,13 @@ public class Filme {
     }
 
     public static void escreverArquivo() {
-        try {
-            FileWriter writer = new FileWriter("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt", true);
+        String filePath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Filmes.txt";
 
-            // Percorre a lista de filmes e escreve cada filme no arquivo
-            for (Filme filme : filmes) {
-                writer.write(filme.titulo + ", " + filme.classIndicativa + ", " + filme.categoria + ", " + filme.status + "\n");
-            }
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            Filme ultimoFilme = filmes.get(filmes.size() - 1);
 
-            writer.close();
+            writer.write(ultimoFilme.titulo + ", " + ultimoFilme.classIndicativa + ", " + ultimoFilme.categoria + ", " + ultimoFilme.status + "\n");
+
             System.out.println("Filme cadastrado com sucesso!");
         } catch (IOException e) {
             System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
