@@ -28,20 +28,15 @@ public class Main {
                     break;
                 case 2:
                     Filme.catalogoF(leitor);
-                    Estoque.carregarFilmes(Filme.filmes);
                     break;
-
                 case 3:
                     Series.catalogoS(leitor);
-                    Estoque.carregarSeries(Series.serie);
                     break;
                 case 4:
                     Filme.cadastrarFilme(leitor);
-                    Estoque.carregarFilmes(Filme.filmes);
                     break;
                 case 5:
                     Series.cadastrarSerie(leitor);
-                    Estoque.carregarSeries(Series.serie);
                     break;
                 case 6:
                     Funcionario.ListarFuncionarios();
