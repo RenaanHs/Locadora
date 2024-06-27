@@ -66,8 +66,8 @@ public class Estoque {
         series.addAll(listaSeries);
     }
 
-    public static void atualizarArquivoFilmes() {
-        String filePath = "C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt";
+    public static void atualizarArquivoFilmes(String filmesPath) {
+        String filePath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Filmes.txt";
 
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Filme filme : filmes) {
@@ -78,8 +78,8 @@ public class Estoque {
         }
     }
 
-    public static void atualizarArquivoSeries() {
-        String filePath = "C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt";
+    public static void atualizarArquivoSeries(String seriesPath) {
+        String filePath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Series.txt";
 
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Series serie : series) {
@@ -91,6 +91,3 @@ public class Estoque {
     }
 
 }
-
-
-
