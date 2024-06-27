@@ -1,11 +1,12 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Devolver {
 
-    private static final String filmesPath = "C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Filmes.txt";
-    private static final String seriesPath = "C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt";
+    static final String filmesPath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Filmes.txt";
+    static final String seriesPath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Series.txt";
     
     public void devolverFilme(Filme f) {
         f.status = Status.Disponivel;
@@ -63,4 +64,18 @@ public class Devolver {
             System.out.println("Item não encontrado ou não disponível para devolução.");
         }
     }
+
+    public static void devolvido(String nomeCliente, String tituloItem, String tipoItem) {
+        String registroPath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\RegistroDevolucoes.txt";
+
+        try (FileWriter fw = new FileWriter(registroPath, true);
+             PrintWriter pw = new PrintWriter(fw)) {
+
+            pw.println("Cliente: " + nomeCliente + " devolveu " + tipoItem + ": " + tituloItem);
+
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever no arquivo de registro: " + e.getMessage());
+        }
+    }
+
 }
