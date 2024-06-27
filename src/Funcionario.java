@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public abstract class Funcionario extends Pessoa {
 
@@ -15,7 +14,7 @@ public abstract class Funcionario extends Pessoa {
     }
     public abstract void realizarAcao ();
 
-    public static void ListarFuncionarios(Scanner leitor) {
+    public static void ListarFuncionarios() {
         funcionarios.add(new Gerente(35, "João", "123456789", 'M', "Gerente", 5000));
         funcionarios.add(new Repositor(25, "Maria", "987654321", 'F', "Repositor", 2500));
         funcionarios.add(new Estoquista(28, "Pedro", "456789123", 'M', "Estoquista", 3000));
