@@ -37,7 +37,7 @@ public class Series {
 
     public static void lerArquivo(List<Series> serie) {
         try {
-            File arquivo = new File("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt");
+            File arquivo = new File("C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Series.txt");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
@@ -118,19 +118,19 @@ public class Series {
     }
 
     public static void escreverArquivo() {
-        try {
-            FileWriter writer = new FileWriter("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Series.txt", true);
+        String filePath = "C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Series.txt";
 
-            for (Series s : serie) {
-                writer.write(s.titulo + ", " + s.classIndicativa + ", " + s.categoria + ", " + s.status + ", " + temporadas + "\n");
-            }
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            Series ultimaSerie = serie.get(serie.size() - 1);
 
-            writer.close();
+            writer.write(ultimaSerie.titulo + ", " + ultimaSerie.classIndicativa + ", " + ultimaSerie.categoria + ", " + ultimaSerie.status + ", " + ultimaSerie.temporadas + "\n");
+
             System.out.println("Série cadastrada com sucesso!");
         } catch (IOException e) {
             System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
     }
+
 
     public static void catalogoS(Scanner leitor) {
         System.out.println("**********************");
