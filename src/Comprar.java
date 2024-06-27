@@ -26,7 +26,7 @@ public class Comprar {
                     historicoComprasF.add(filme);
                     System.out.println("Compra registrada: " + filme.titulo + " agora está " + filme.status);
 
-                    Estoque.atualizarArquivoFilmes();
+                    Estoque.atualizarArquivoFilmes(Devolver.filmesPath);
                     return;
                 }
             }
@@ -43,7 +43,7 @@ public class Comprar {
                     historicoCompraS.add(serie);
                     System.out.println("Compra registrada: " + serie.titulo + " agora está " + serie.status);
 
-                    Estoque.atualizarArquivoSeries();
+                    Estoque.atualizarArquivoSeries(Devolver.seriesPath);
                     return;
                 }
             }
