@@ -80,7 +80,7 @@ public class Cliente extends Pessoa {
     }
 
     public static void lerArquivo() throws FileNotFoundException {
-        File arquivo = new File("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Cliente.txt");
+        File arquivo = new File("C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Cliente.txt");
         Scanner scanner = new Scanner(arquivo);
 
         while (scanner.hasNextLine()) {
@@ -104,7 +104,7 @@ public class Cliente extends Pessoa {
 
     public static void salvarArquivo() {
         try {
-            FileWriter writer = new FileWriter("C:\\Users\\silvi\\Downloads\\Locadora-main\\Locadora-main\\src\\Cliente.txt");
+            FileWriter writer = new FileWriter("C:\\Users\\autologon\\Downloads\\Locadora-main\\src\\Cliente.txt");
             for (Cliente cliente : pessoa) {
                 writer.write(cliente.idade + "," + cliente.nome + "," + cliente.cpf + "," + cliente.genero + "," + cliente.getId() + "\n");
             }
@@ -150,20 +150,15 @@ public class Cliente extends Pessoa {
                     Cliente.cadastrarCliente(leitor);
                     break;
                 case 2:
-                    Filme.lerArquivo(Filme.filmes);
-                    Series.lerArquivo(Series.serie);
                     Alugar.alugar(leitor);
                     break;
                 case 3:
-                    Filme.lerArquivo(Filme.filmes);
-                    Series.lerArquivo(Series.serie);
                     Devolver.devolver(leitor);
                     break;
                 case 4:
                     System.out.println("Informe o ID do cliente:");
                     int idComprarF = Integer.parseInt(leitor.nextLine());
                     if (Cliente.pesquisarId(idComprarF, leitor)) {
-                        Filme.lerArquivo(Filme.filmes);
                         Estoque.carregarFilmes(Filme.filmes);
                         Comprar.menuCompraFilmes(leitor);
                     } else {
@@ -174,7 +169,6 @@ public class Cliente extends Pessoa {
                     System.out.println("Informe o ID do cliente:");
                     int idComprarS = Integer.parseInt(leitor.nextLine());
                     if (Cliente.pesquisarId(idComprarS, leitor)) {
-                        Series.lerArquivo(Series.serie);
                         Estoque.carregarSeries(Series.serie);
                         Comprar.menuCompraS(leitor);
                     } else {
@@ -192,6 +186,3 @@ public class Cliente extends Pessoa {
         }
     }
 }
-
-
-
