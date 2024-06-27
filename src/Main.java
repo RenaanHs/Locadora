@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
+        Series.lerArquivo(Series.serie);
+        Filme.lerArquivo(Filme.filmes);
         while (true){
             System.out.println("*********************");
             System.out.println("*****LOUUCADORA******");
@@ -25,26 +27,24 @@ public class Main {
                     Cliente.cliente(leitor);
                     break;
                 case 2:
-                    Filme.lerArquivo(Filme.filmes);
                     Filme.catalogoF(leitor);
                     Estoque.carregarFilmes(Filme.filmes);
                     break;
 
                 case 3:
-                    Series.lerArquivo(Series.serie);
                     Series.catalogoS(leitor);
                     Estoque.carregarSeries(Series.serie);
                     break;
                 case 4:
-                    Filme.lerArquivo(Filme.filmes);
                     Filme.cadastrarFilme(leitor);
                     Estoque.carregarFilmes(Filme.filmes);
                     break;
                 case 5:
-                    Series.lerArquivo(Series.serie);
                     Series.cadastrarSerie(leitor);
                     Estoque.carregarSeries(Series.serie);
                     break;
+                case 6:
+                    Funcionario.ListarFuncionarios();
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
